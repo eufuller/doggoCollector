@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+
 
 # Create your views here.
 def home(request):
@@ -10,5 +10,17 @@ def about(request):
     # return render(request, 'about.html')
 
 def dogs_index(request):
-    return HttpResponse('<h1>Doggos</h1>')
-    # return render(request, 'doggoIndex.html')
+    return render(request, 'dogs/doggoIndex.html', {'dogs': dogs})
+
+class Dog:  # Note that parens are optional if not inheriting from another class
+    def __init__(self, name, breed, description, age):
+        self.name = name
+        self.breed = breed
+        self.description = description
+        self.age = age
+
+dogs = [
+    Dog('Lolo', 'tabby', 'foul little demon', 3),
+    Dog('Sachi', 'tortoise shell', 'diluted tortoise shell', 0),
+    Dog('Raven', 'black tripod', '3 legged Dog', 4)
+]
